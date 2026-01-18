@@ -1,0 +1,11 @@
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+FiasArchives/
+FiasDocs/
+FiasReports/
+
+.vs/
+bin/
+obj/
