@@ -25,8 +25,13 @@ if errorlevel 1 (
 echo.
 
 echo Запуск программы...
+cls
+echo ================================================
+echo Report Generator
+echo ================================================
 echo.
-dotnet run --configuration Release -p:NoWarn=* -v:q
+dotnet run --no-build --configuration Release
+
 
 echo.
 echo ================================================

@@ -26,10 +26,10 @@ namespace ReportGenerator.Services
                     .Where(x => x.Attribute("ISACTIVE")?.Value == "1")
                     .Select(x => new AddressObject
                     {
-                        ObjectId = x.Attribute("OBJECTID")?.Value,
-                        ObjectGuid = x.Attribute("OBJECTGUID")?.Value,
-                        Name = x.Attribute("NAME")?.Value,
-                        TypeName = x.Attribute("TYPENAME")?.Value,
+                        ObjectId = x.Attribute("OBJECTID")?.Value ?? string.Empty,
+                        ObjectGuid = x.Attribute("OBJECTGUID")?.Value ?? string.Empty,
+                        Name = x.Attribute("NAME")?.Value ?? string.Empty,
+                        TypeName = x.Attribute("TYPENAME")?.Value ?? string.Empty,
                         Level = int.Parse(x.Attribute("LEVEL")?.Value ?? "0"),
                         UpdateDate = DateTime.Parse(x.Attribute("UPDATEDATE")?.Value ?? DateTime.Now.ToString())
                     });

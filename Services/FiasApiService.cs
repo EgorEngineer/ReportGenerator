@@ -60,14 +60,14 @@ namespace ReportGenerator.Services
     public class DownloadFileInfo
     {
         public int VersionId { get; set; }
-        public string TextVersion { get; set; }
-        public string FiasCompleteDbfUrl { get; set; }
-        public string FiasCompleteXmlUrl { get; set; }
-        public string FiasDeltaDbfUrl { get; set; }
-        public string FiasDeltaXmlUrl { get; set; }
-        public string GarXMLDeltaURL { get; set; }
-        public string GarXMLFullURL { get; set; }
-        public string Kladr4ArjUrl { get; set; }
-        public string Kladr47ZUrl { get; set; }
+        public string TextVersion { get; set; } = string.Empty;
+        public string FiasCompleteDbfUrl { get; set; } = string.Empty;
+        public string FiasCompleteXmlUrl { get; set; } = string.Empty;
+        public string FiasDeltaDbfUrl { get; set; } = string.Empty;
+        public string FiasDeltaXmlUrl { get; set; } = string.Empty;
+        public string GarXMLDeltaURL { get; set; } = string.Empty;
+        public string GarXMLFullURL { get; set; } = string.Empty;
+        public string Kladr4ArjUrl { get; set; } = string.Empty;
+        public string Kladr47ZUrl { get; set; } = string.Empty;
     }
 }

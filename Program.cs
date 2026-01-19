@@ -8,9 +8,7 @@ namespace ReportGenerator
         {
             try
             {
-                Console.WriteLine("Генератор отчета по новым адресным объектам");
-                Console.WriteLine("=================================================\n");
-
+                
                 var apiService = new FiasApiService();
                 var xmlParser = new XmlParserService();
                 var fileManager = new FileManager();
