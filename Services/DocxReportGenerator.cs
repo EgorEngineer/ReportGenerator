@@ -13,9 +13,7 @@ namespace ReportGenerator.Services
 {
     internal class DocxReportGenerator
     {
-        /// <summary>
         /// Генерирует DOCX-отчет
-        /// </summary>
         /// <param name="objects">Список адресных объектов</param>
         /// <param name="levels">Словарь уровней</param>
         /// <param name="outputPath">Путь для сохранения отчета</param>
@@ -34,10 +32,8 @@ namespace ReportGenerator.Services
                 mainPart.Document = new DocumentFormat.OpenXml.Wordprocessing.Document();
                 Body body = new Body();
 
-                // Заголовок отчета
                 AppendHeader(body, reportDate, objects.Count);
 
-                // Таблицы для каждого уровня
                 foreach (var group in groupedByLevel)
                 {
                     string levelName = levels.ContainsKey(group.Key) ? levels[group.Key] : $"Уровень {group.Key}";
@@ -53,11 +49,10 @@ namespace ReportGenerator.Services
 
         private void AppendHeader(Body body, DateTime reportDate, int totalCount)
         {
-            body.Append(CreateHeading("Отчет по новым адресным объектам ФИАС", 1));
-            body.Append(CreateParagraph($"Дата изменений: {reportDate:dd.MM.yyyy}"));
+            body.Append(CreateHeading($"Отчет по новым адресным объектам ФИАС {reportDate:dd.MM.yyyy}", 1));
             body.Append(CreateParagraph($"Дата формирования отчета: {DateTime.Now:dd.MM.yyyy HH:mm:ss}"));
             body.Append(CreateParagraph($"Всего объектов: {totalCount}"));
-            body.Append(CreateParagraph("")); // Пустая строка
+            body.Append(CreateParagraph(""));
         }
 
         private void AppendLevelSection(Body body, string levelName, List<AddressObject> sortedObjects)
@@ -67,14 +62,12 @@ namespace ReportGenerator.Services
 
             Table table = CreateTable();
 
-            // Заголовок таблицы
             TableRow headerRow = new TableRow();
             headerRow.Append(CreateTableCell("№", true));
             headerRow.Append(CreateTableCell("Тип", true));
             headerRow.Append(CreateTableCell("Наименование", true));
             table.Append(headerRow);
 
-            // Данные
             for (int i = 0; i < sortedObjects.Count; i++)
             {
                 var obj = sortedObjects[i];
@@ -86,7 +79,7 @@ namespace ReportGenerator.Services
             }
 
             body.Append(table);
-            body.Append(CreateParagraph("")); // Пустая строка между таблицами
+            body.Append(CreateParagraph(""));
         }
 
         private Paragraph CreateHeading(string text, int level)

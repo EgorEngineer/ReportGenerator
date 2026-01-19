@@ -9,9 +9,7 @@ namespace ReportGenerator.Services
 {
     internal class HtmlReportGenerator
     {
-        /// <summary>
         /// Генерирует HTML-отчет
-        /// </summary>
         /// <param name="objects">Список адресных объектов</param>
         /// <param name="levels">Словарь уровней</param>
         /// <param name="outputPath">Путь для сохранения отчета</param>
@@ -67,8 +65,7 @@ namespace ReportGenerator.Services
             html.AppendLine("<body>");
             html.AppendLine("    <div class='container'>");
             html.AppendLine("        <div class='header'>");
-            html.AppendLine("            <h1>Отчет по новым адресным объектам ФИАС</h1>");
-            html.AppendLine($"            <div class='date'>Дата изменений: <strong>{reportDate:dd.MM.yyyy}</strong></div>");
+            html.AppendLine($"            <h1>Отчет по новым адресным объектам ФИАС за {reportDate:dd.MM.yyyy}</h1>");
             html.AppendLine($"            <div class='date'>Дата формирования отчета: <strong>{DateTime.Now:dd.MM.yyyy HH:mm:ss}</strong></div>");
             html.AppendLine($"            <div class='count'>Всего объектов: <strong>{totalCount}</strong></div>");
             html.AppendLine("        </div>");

@@ -1,11 +1,13 @@
 @echo off
 chcp 65001 > nul
+
+cd /d "%~dp0"
+
 echo ================================================
-echo ФИАС Report Generator
+echo Report Generator
 echo ================================================
 echo.
 
-REM Проверка установки .NET
 dotnet --version >nul 2>&1
 if errorlevel 1 (
     echo ОШИБКА: .NET SDK не установлен!
@@ -14,17 +16,17 @@ if errorlevel 1 (
 )
 
 echo Сборка проекта...
-dotnet build --configuration Release -p:WarningLevel=0
+dotnet build --configuration Release -p:NoWarn=* -v:q
 if errorlevel 1 (
     echo ОШИБКА при сборке проекта!
     pause
     exit /b 1
 )
-
 echo.
+
 echo Запуск программы...
 echo.
-dotnet run --configuration Release
+dotnet run --configuration Release -p:NoWarn=* -v:q
 
 echo.
 echo ================================================
@@ -32,13 +34,18 @@ echo Программа завершена
 echo ================================================
 echo.
 
-REM Открываем отчеты, если они существуют
-if exist "FiasReport\report_*.html" (
-    for %%f in (FiasReport\report_*.html) do start "" "%%f"
+for /f "delims=" %%f in ('dir "FiasReports\report_*.html" /b /o-d 2^>nul') do (
+    echo Открытие %%f
+    start "" "FiasReports\%%f"
+    goto :docx
 )
 
-if exist "FiasReport\report_*.docx" (
-    for %%f in (FiasReport\report_*.docx) do start "" "%%f"
+:docx
+for /f "delims=" %%f in ('dir "FiasReports\report_*.docx" /b /o-d 2^>nul') do (
+    echo Открытие %%f
+    start "" "FiasReports\%%f"
+    goto :end
 )
 
+:end
 pause
